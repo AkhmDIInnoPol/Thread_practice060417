@@ -1,5 +1,9 @@
 package com.company;
 
+import sun.misc.Lock;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,9 +15,18 @@ public class Main {
     // 1 second in milliseconds.
     private static final int SECOND_IN_MS = 1000;
 
-    private static final int MULTIPLE_OF_5_SECONDS = 5000;
+
+
+    private static final Object resources = new Object();
+
 
     public static void main(String[] args) {
+
+
+
+        OneSecondIndicator oneSecondIndicator = new OneSecondIndicator(resources);
+        oneSecondIndicator.start();
+
 
 
 
@@ -21,16 +34,30 @@ public class Main {
 
             @Override
             public void run() {
+
                 pastTime += SECOND_IN_MS;
 
-                OneSecondIndicator.timePast = pastTime / 1000;
-                new OneSecondIndicator().start();
 
-                if ((pastTime % MULTIPLE_OF_5_SECONDS) == 0)
-                {
-                    FiveSecondsIndicator.timePast = pastTime / 1000;
-                    new FiveSecondsIndicator().start();
-                }
+
+
+                OneSecondIndicator.timePast = pastTime / 1000;
+                oneSecondIndicator.wakeUp();
+
+//                if ((pastTime % MULTIPLE_OF_5_SECONDS) == 0)
+//                {
+//                    FiveSecondsIndicator.timePast = pastTime / 1000;
+//                    fiveSecondsIndicator.weakUp();
+//                }
+
+
+//                OneSecondIndicator.timePast = pastTime / 1000;
+//                new OneSecondIndicator().start();
+//
+//                if ((pastTime % MULTIPLE_OF_5_SECONDS) == 0)
+//                {
+//                    FiveSecondsIndicator.timePast = pastTime / 1000;
+//                    new FiveSecondsIndicator().start();
+//                }
             }
         };
 

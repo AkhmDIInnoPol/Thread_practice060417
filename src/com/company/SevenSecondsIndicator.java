@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by admin on 06.04.2017.
  */
-public class FiveSecondsIndicator extends Thread  {
+public class SevenSecondsIndicator extends Thread  {
 
     public static int timePast = 0;
 
@@ -11,7 +11,7 @@ public class FiveSecondsIndicator extends Thread  {
     private static Object resources;
 
 
-    public FiveSecondsIndicator(Object res)
+    public SevenSecondsIndicator(Object res)
     {
         resources = res;
     }
@@ -32,7 +32,7 @@ public class FiveSecondsIndicator extends Thread  {
                     e.printStackTrace();
                 }
 
-                System.out.println("5 seconds thread, overall time remain: " + timePast);
+                System.out.println("7 seconds thread, overall time remain: " + timePast);
             }
         }
 
